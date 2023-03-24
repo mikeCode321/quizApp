@@ -1,0 +1,373 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #bb72e8;
+}
+
+/* ::selection {
+  color: #c82626;
+  background: blue;
+} */
+
+.start-btn,
+.info-box,
+.quiz-box,
+.result-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px 0 black, 0 6px 20px 0 rgb(35, 30, 30);
+}
+
+.info-box.activeInfo,
+.quiz-box.activeQuiz,
+.result-box.activeResult {
+  opacity: 1;
+  z-index: 5;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.start-btn button {
+  font-size: 25px;
+  font-weight: 500;
+  color: #bb72e8;
+  padding: 15px 30px;
+  outline: none;
+  border: none;
+  /* opacity: 0; */
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.info-box {
+  width: 540px;
+  background: #fff;
+  border-radius: 5px;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.info-box .info-title {
+  height: 60px;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  border-radius: 5px 5px 0 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.info-box .info-title {
+  padding: 15px 30px;
+}
+
+.info-box .info-list .info {
+  margin: 5px 0;
+  font-size: 17px;
+}
+
+.info span {
+  font-weight: 600;
+  color: blue;
+}
+
+.info-box .buttons {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 30px;
+  border-top: 1px solid lightgray;
+}
+
+.info-box .buttons button {
+  margin: 0 5px;
+  height: 30px;
+  width: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #bb72e8;
+  transition: all 0.3s ease;
+}
+
+.quiz-box {
+  width: 550px;
+  background: #fff;
+  border-radius: 5px;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.quiz-box header {
+  position: relative;
+  z-index: 2;
+  height: 90px;
+  padding: 0 30px;
+  background: #fff;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 3px 5px 1px black;
+}
+
+.quiz-box header .title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.quiz-box header .timer {
+  color: #bb72e8;
+  background: #cce5ff;
+  border: 1px solid #b8dab8;
+  height: 45px;
+  padding: 0 8px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 145px;
+}
+
+.quiz-box header .timer .time-left {
+  font-weight: 400;
+  font-size: 17px;
+  user-select: none;
+}
+
+.quiz-box header .timer .timer-sec {
+  font-weight: 500;
+  font-size: 18px;
+  height: 30px;
+  width: 45px;
+  color: #fff;
+  border-radius: 5px;
+  line-height: 30px;
+  text-align: center;
+  background: olive;
+  border: 1px solid olive;
+  user-select: none;
+}
+
+.quiz-box header .time-line {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 3px;
+  background: pink;
+}
+
+section {
+  padding: 25px 30px 20px 30px;
+  background: #fff;
+}
+
+section .question-text {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+section .options-list {
+  padding: 20px 0px;
+  display: block;
+}
+
+section .options-list .option {
+  background: aliceblue;
+  border: 1px solid blue;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-size: 17px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: space-between;
+}
+
+section .options-list .option:last-child {
+  margin-bottom: 0px;
+}
+
+section .options-list .option:hover {
+  color: #601391;
+  background: #cce5ff;
+  border: 1px solid #b8daff;
+}
+
+section .options-list .option.correct {
+  color: green;
+  background: white;
+  border: 1px solid blue;
+}
+
+section .options-list .option.incorrect {
+  color: red;
+  background: white;
+  border: 1px solid blue;
+}
+
+section .options-list .option.disabled {
+  pointer-events: none;
+}
+
+section .options-list .option .icon {
+  height: 26px;
+  width: 26px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 13px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  line-height: 24px;
+}
+
+.options-list .option .icon.tick {
+  color: green;
+}
+
+.options-list .option .icon.cross {
+  color: red;
+}
+
+footer {
+  height: 60px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid lightgray;
+}
+
+footer .total-questions span {
+  display: flex;
+  user-select: none;
+}
+
+footer .total-questions span p {
+  font-weight: 500;
+  padding: 0 5px;
+}
+
+footer .total-questions span p:first-child {
+  padding-left: 0px;
+}
+
+footer button.next-btn {
+  height: 40px;
+  padding: 0 13px;
+  font-size: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: #903737;
+  border-radius: 5px;
+  background-color: pink;
+  border: 1px solid pink;
+  line-height: 10px;
+  opacity: 1;
+  pointer-events:none;
+  transform: scale(0.95);
+  transition: all 0.3s ease;
+}
+
+footer button:hover {
+  background: pink;
+}
+
+footer button.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.result-box {
+  background: #fff;
+  border-radius: 5px;
+  display: flex;
+  padding: 25px 30px;
+  width: 450px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.result-box .complete-text {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.result-box .score-text span {
+  display: flex;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.result-box .score-text span p {
+  padding: 0 4px;
+  font-weight: 500;
+}
+
+.result-box .buttons{
+    display: flex;
+    margin: 20px 0;
+}
+
+
+.result-box .buttons button{
+    margin:0  10px;
+    height: 45px;
+    padding: 0 20px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid pink;
+    transition: all 0.3s ease;
+}
+
+.button button.restart{
+    color: #fff;
+    background: pink;
+}
+
+.button button.restart:hover{
+    background: pink;
+}
+
+.button button.quit{
+    background: rgb(132, 119, 121);
+    color: pink;
+}   
+
+.button button.quit:hover{
+    color: #fff;
+    background: pink;
+}
+
